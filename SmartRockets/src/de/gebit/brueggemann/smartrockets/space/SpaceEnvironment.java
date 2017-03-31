@@ -12,6 +12,7 @@ import java.util.Random;
 import javax.swing.BorderFactory;
 
 import de.gebit.brueggemann.smartrockets.rockets.Rocket;
+import de.gebit.brueggemann.smartrockets.rockets.Smart;
 import de.gebit.brueggemann.smartrockets.space.planets.Earth;
 import de.gebit.brueggemann.smartrockets.space.planets.ExoPlanet;
 import de.gebit.brueggemann.smartrockets.util.Vector2D;
@@ -57,7 +58,7 @@ public class SpaceEnvironment extends javax.swing.JPanel {
 			int x = random.nextInt(max_x - min_x + 1) + min_x;
 			int y = random.nextInt(max_y - min_y + 1) + min_y;
 
-			rocketPool.add(new Rocket(new Vector2D(x, y)));
+			rocketPool.add(new Rocket(new Vector2D(x, y), new Smart()));
 		}
 	}
 

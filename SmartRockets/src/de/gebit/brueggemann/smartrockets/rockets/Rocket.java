@@ -16,9 +16,12 @@ public class Rocket {
 	private RocketStatus status;
 	private boolean hitTarget = false;
 	private Vector2D graphicalSize = new Vector2D(3, 8);
+	private Smart smart;
+	private int geneNumber = 0;
 
-	public Rocket(Vector2D initialLocation /* add SMART */) {
+	public Rocket(Vector2D initialLocation, Smart smart) {
 		status = new RocketStatus(initialLocation);
+		this.smart = smart;
 	}
 
 	public void addForce(Vector2D force) {
@@ -32,10 +35,14 @@ public class Rocket {
 	public void fly(AbstractPlanet targetPlanet) {
 		reachedPlanet(targetPlanet);
 		if (!hitTarget) {
-			// TODO implement SMART
-			addForce(new Vector2D(Math.random() - Math.random(), Math.random() - Math.random()));
+			addForce(smart.getGenes()[geneNumber++]);
 			status.updateLocalization();
+			geneNumber %= smart.getGenes().length;
 		}
+	}
+
+	public double calculateFitness(AbstractPlanet targetPlanet) {
+		return 1 / Vector2D.distance(getLocalization(), targetPlanet.getLocalization());
 	}
 
 	/**
@@ -61,5 +68,12 @@ public class Rocket {
 
 	public static Color getColor() {
 		return Color.BLACK;
+	}
+
+	/**
+	 * @return the smart
+	 */
+	public Smart getSmart() {
+		return smart;
 	}
 }
