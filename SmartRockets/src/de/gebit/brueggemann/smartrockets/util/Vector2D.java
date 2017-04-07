@@ -44,4 +44,16 @@ public class Vector2D {
 	public static Vector2D getNullVector() {
 		return new Vector2D(0, 0);
 	}
+
+	public Vector2D normalize() {
+		Vector2D v2 = new Vector2D(0, 0);
+
+		double length = Math.sqrt(this.x * this.x + this.y * this.y);
+		if (length != 0) {
+			v2.x = this.x / length;
+			v2.y = this.y / length;
+		}
+
+		return v2;
+	}
 }

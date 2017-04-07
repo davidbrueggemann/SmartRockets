@@ -4,6 +4,9 @@
 package de.gebit.brueggemann.smartrockets.space.planets;
 
 import java.awt.Color;
+import java.util.Random;
+
+import de.gebit.brueggemann.smartrockets.util.Vector2D;
 
 /**
  * @author DavidWork
@@ -19,5 +22,21 @@ public class Earth extends AbstractPlanet {
 	@Override
 	public int getSize() {
 		return EARTH_SIZE;
+	}
+
+	// TODO Rockets should start really >>ON<< the planet
+	// generate a random localization on earth (starting point)
+	public Vector2D getRandomLocalizationOnPlanet() {
+		Random random = new Random();
+
+		int max_x = getX_pos() + getPlanetSize();
+		int min_x = getX_pos();
+		int max_y = getY_pos() + getPlanetSize();
+		int min_y = getY_pos();
+
+		int x = random.nextInt(max_x - min_x + 1) + min_x;
+		int y = random.nextInt(max_y - min_y + 1) + min_y;
+
+		return new Vector2D(x, y);
 	}
 }

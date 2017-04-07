@@ -3,6 +3,8 @@
  */
 package de.gebit.brueggemann.smartrockets.rockets;
 
+import java.util.Random;
+
 import de.gebit.brueggemann.smartrockets.util.Vector2D;
 
 /**
@@ -18,7 +20,7 @@ public class Smart {
 	}
 
 	private Vector2D[] genes;
-	private double maxforce = 0.1;
+	private final static double MAXFORCE = 0.3;
 	private final static int GENE_POOL = 100;
 
 	public Smart() {
@@ -28,7 +30,7 @@ public class Smart {
 			// choose a vector from 360 degrees range in which the object will
 			// move
 			genes[i] = new Vector2D(Math.cos(angle), Math.sin(angle));
-			genes[i].mult(Math.random() * maxforce);
+			genes[i].mult(Math.random() * MAXFORCE);
 		}
 	}
 
@@ -53,15 +55,21 @@ public class Smart {
 		return newgenes;
 	}
 
-	public void mutate(double m) { // m is mutationRate given to the population
-									// object while instantiating
+	public void mutate(double m) {
+		// m is mutationRate given to the population
+		// object while instantiating
+		Random tempRandom = new Random();
 		for (int i = 0; i < genes.length; i++) {
-			if (Math.random() < m) {
-				double angle = Math.random() * 2 * Math.PI;
+			if (tempRandom.nextDouble() < m) {
+				double angle = tempRandom.nextFloat() * 2 * Math.PI;
 				genes[i] = new Vector2D(Math.cos(angle), Math.sin(angle));
-				genes[i].mult(Math.random() * maxforce);
+				genes[i].mult(tempRandom.nextDouble() * MAXFORCE);
+				if (i == 0) {
+					genes[i].normalize();
+				}
 			}
 		}
+
 	}
 
 }

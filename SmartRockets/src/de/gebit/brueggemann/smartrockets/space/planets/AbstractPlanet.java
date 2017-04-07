@@ -15,6 +15,7 @@ public abstract class AbstractPlanet {
 	private int x_pos;
 	private int y_pos;
 	private int planetSize;
+	private int size = 10;
 
 	private Color planetColor = Color.BLACK;
 
@@ -104,5 +105,4 @@ public abstract class AbstractPlanet {
 		this.planetSize = planetSize;
 	}
 
-	int size = 10;
 }
