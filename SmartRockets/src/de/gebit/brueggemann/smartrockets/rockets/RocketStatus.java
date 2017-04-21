@@ -33,17 +33,6 @@ public class RocketStatus {
 
 		location.add(velocity);
 
-		// TODO Constants!!
-		// TODO Extract to Method!!
-		if (location.getX() <= 2)
-			location = new Vector2D(2.0, location.getY());
-		if (location.getX() >= 848)
-			location = new Vector2D(848.0, location.getY());
-		if (location.getY() <= 2)
-			location = new Vector2D(location.getX(), 2.0);
-		if (location.getY() >= 848)
-			location = new Vector2D(location.getX(), 848.0);
-
 		acceleration.mult(0);
 	}
 

@@ -31,7 +31,9 @@ public abstract class AbstractObstacle {
 	public Vector2D getLocalization() {
 		return new Vector2D(x_pos, y_pos);
 	}
-
+	
+	public abstract boolean getDistanceToObstacle(Vector2D point);
+	
 	/**
 	 * @return the x_pos
 	 */
@@ -106,5 +108,6 @@ public abstract class AbstractObstacle {
 	public void setObstacleColor(Color obstacleColor) {
 		this.obstacleColor = obstacleColor;
 	}
+
 
 }

@@ -18,10 +18,12 @@ import de.gebit.brueggemann.smartrockets.space.SpaceEnvironment;
  */
 public class SmartRocketsMain extends JApplet {
 
+	private static final long serialVersionUID = 1L;
+
 	private final static int WINDOW_HEIGHT = 900;
 	private final static int WINDOW_WIDTH = 900;
 	private final static int SPACE_SIZE = 850;
-	private final static int ROCKET_POOL_SIZE = 50;
+	private final static int ROCKET_POOL_SIZE = 500;
 
 	private JButton start_btn;
 	private JButton reset_btn;

@@ -33,7 +33,7 @@ public class SpaceEnvironment extends javax.swing.JPanel {
 	private Thread timeThread;
 
 	private int cycleNumber = 0;
-	private static final int LIFETIME = 500;
+	private static final int LIFETIME = 400;
 	// See Mutation Rate Wikipedia ==> 0.5 * Math.pow(10, -9)
 	private static final double MUTATION_RATE = 0.5 * Math.pow(10, -2);
 
@@ -42,21 +42,22 @@ public class SpaceEnvironment extends javax.swing.JPanel {
 	private int generation = 1;
 
 	public SpaceEnvironment(int aSpaceSize, int amountOfRockets) {
+		rocketPoolSize = amountOfRockets;
 		// Initital Space
 		spaceSize = aSpaceSize;
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setBackground(Color.WHITE);
 
 		// initial Planets
-		earth = new Earth(aSpaceSize / 2, (int) (aSpaceSize - aSpaceSize * 0.1));
+		earth = new Earth(aSpaceSize / 2, (int) (aSpaceSize - aSpaceSize * 0.13),
+				(int) (rocketPoolSize > 20 ? rocketPoolSize * 0.2 : 20));
 		exoPlanet = new ExoPlanet(aSpaceSize / 2, (int) (aSpaceSize * 0.1));
 
 		// Star Destroyer as Obstangle
-		starDestroyer = new StarDestroyer((int) (aSpaceSize * 0.25), (int) (aSpaceSize * 0.75));
+		starDestroyer = new StarDestroyer((int) (aSpaceSize * 0.50), (int) (aSpaceSize * 0.65));
 		obstacleList.add(starDestroyer);
 
 		// initial Rockets
-		rocketPoolSize = amountOfRockets;
 		rocketPool = new ArrayList<Rocket>();
 
 		for (int i = 0; i < rocketPoolSize; i++) {
